@@ -42,7 +42,7 @@ public class Main {
 		log2.printLevel();
 		*/
 		Email email = new Email();
-		email.sendMail();
+		email.sendMail2();
 	}
 	
 	public static void otroMetodo() {
