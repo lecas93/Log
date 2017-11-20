@@ -10,11 +10,8 @@ import java.util.Random;
 
 public class Logger {
 
-	private static Logger log;
-
-	private static Logger log2;
+	// private static Logger log;
 	private Class currentClass;
-	//public String id;
 
 	public static enum Level {
 		INFO, WARNING, SEVERE
@@ -22,41 +19,28 @@ public class Logger {
 
 	private static int currentLevel = 0;
 
-	private Logger() {
+	private Logger(Class currentClass) {
+		this.currentClass = currentClass;
 	}
 
 	/*
-	public static Logger getInstance() {
-		if (log == null) {
-			log = new Logger();
-		}
-		return log;
-	}
-	*/
+	 * public static Logger getInstance() { if (log == null) { log = new Logger(); }
+	 * return log; }
+	 */
 
 	// Con este metodo NO se debe aplicar el patron Singleton
-	public static Logger getLogger(Class myClass) {
-		Logger log = new Logger();
-		log.setCurrentClass(myClass);
-		//log.id = myClass.getName() + new Random().nextInt();
+	public static Logger getLogger(Class currentClass) {
+		Logger log = new Logger(currentClass);
 		return log;
 	}
 
-	private void setCurrentClass(Class myClass) {
-		currentClass = myClass;
-	}
-
-	public void printId() {
-		//System.out.println(id);
-	}
-	
-	public void printLevel() {
+	public static void printLevel() {
 		System.out.println("Current level: " + currentLevel);
 	}
 
 	public static void setLevel(Level level) {
 		currentLevel = level.ordinal();
-		System.out.println("Current level: " + currentLevel);
+		printLevel();
 	}
 
 	private void printCurrentState() {
@@ -66,10 +50,8 @@ public class Logger {
 	}
 
 	public void info(String msg) {
-		if (currentClass != null) {
-			printCurrentState();
-			System.out.println("INFO: " + msg);
-		}
+		printCurrentState();
+		System.out.println("INFO: " + msg);
 	}
 
 	public void warning(String msg) {

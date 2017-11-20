@@ -22,10 +22,6 @@ public class Main {
 		Logger log4 = Logger.getLogger(Main.class);
 		log4.warning("Este es un warning");
 		
-		//log4.printId();
-		//log3.printId();
-		//log2.printId();
-		
 		log4.printLevel();
 		log3.printLevel();
 		log2.printLevel();
