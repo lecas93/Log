@@ -6,49 +6,31 @@ import javax.mail.internet.*;
 import javax.activation.*;
 
 public class Email {
-	
-	public Email() {}
+
+	public Email() {
+	}
 
 	public void sendMail() {
-		// Recipient's email ID needs to be mentioned.
+		// Set up the SMTP server.
+		java.util.Properties props = new java.util.Properties();
+		props.put("mail.smtp.host", "smtp.myisp.com");
+		Session session = Session.getDefaultInstance(props, null);
+
+		// Construct the message
 		String to = "angi.lecas93@gmail.com";
-
-		// Sender's email ID needs to be mentioned
 		String from = "angi_lecas@hotmail.com";
-
-		// Assuming you are sending email from localhost
-		String host = "localhost";
-
-		// Get system properties
-		Properties properties = System.getProperties();
-
-		// Setup mail server
-		properties.setProperty("mail.smtp.host", host);
-
-		// Get the default Session object.
-		Session session = Session.getDefaultInstance(properties);
-
+		String subject = "Hello";
+		Message msg = new MimeMessage(session);
 		try {
-			// Create a default MimeMessage object.
-			MimeMessage message = new MimeMessage(session);
+			msg.setFrom(new InternetAddress(from));
+			msg.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
+			msg.setSubject(subject);
+			msg.setText("Hi,\n\nHow are you?");
 
-			// Set From: header field of the header.
-			message.setFrom(new InternetAddress(from));
-
-			// Set To: header field of the header.
-			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-
-			// Set Subject: header field
-			message.setSubject("This is the Subject Line!");
-
-			// Now set the actual message
-			message.setText("This is actual message");
-
-			// Send message
-			Transport.send(message);
-			System.out.println("Sent message successfully....");
-		} catch (MessagingException mex) {
-			mex.printStackTrace();
+			// Send the message.
+			Transport.send(msg);
+		} catch (MessagingException e) {
+			// Error.
 		}
 	}
 
