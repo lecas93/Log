@@ -1,8 +1,6 @@
 package Test;
 
-import java.util.Calendar;
 import java.util.Date;
-import java.util.Random;
 
 //TODO
 //setLevel es decir, establecer los niveles
