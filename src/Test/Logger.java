@@ -12,10 +12,15 @@ public class Logger {
 	private Class currentClass;
 
 	public static enum Level {
-		INFO, WARNING, SEVERE
+		INFO, WARNING, ERROR
+	}
+
+	public static enum Mode {
+		DEBUG, PRODUCTION
 	}
 
 	private static int currentLevel = 0;
+	private static int currentMode = 0;
 
 	private Logger(Class currentClass) {
 		this.currentClass = currentClass;
@@ -40,6 +45,10 @@ public class Logger {
 		currentLevel = level.ordinal();
 		printLevel();
 	}
+	
+	public static void setMode(Mode mode) {
+		currentMode = mode.ordinal();
+	}
 
 	private void printCurrentState() {
 		StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
@@ -57,8 +66,8 @@ public class Logger {
 		System.out.println("WARNING: " + msg);
 	}
 
-	public void severe(String msg) {
+	public void error(String msg) {
 		printCurrentState();
-		System.out.println("SEVERE: " + msg);
+		System.out.println("ERROR: " + msg);
 	}
 }

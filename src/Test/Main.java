@@ -32,7 +32,7 @@ public class Main {
 		log3.printLevel();
 		log2.printLevel();
 		
-		Logger.setLevel(Level.SEVERE);
+		Logger.setLevel(Level.ERROR);
 		
 		log4.printLevel();
 		log3.printLevel();
