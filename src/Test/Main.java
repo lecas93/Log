@@ -1,6 +1,7 @@
 package Test;
 
-import Test.Logger.Level;
+import Log.Logger;
+import Log.Level;;
 
 public class Main {
 
