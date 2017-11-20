@@ -1,12 +1,14 @@
 package Test;
 
 import Log.Logger;
+import Log.Email;
 import Log.Level;;
 
 public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		/*
 		//Logger logger = Logger.getInstance();
 		Logger.setLevel(Level.INFO);
 		
@@ -38,6 +40,9 @@ public class Main {
 		log4.printLevel();
 		log3.printLevel();
 		log2.printLevel();
+		*/
+		Email email = new Email();
+		email.sendMail();
 	}
 	
 	public static void otroMetodo() {
