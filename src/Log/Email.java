@@ -77,7 +77,7 @@ public class Email {
 			// Send the message
 			//Transport.send(msg);
 			Transport transport = session.getTransport("smtp");
-			transport.connect("angi.lecas93@gmail.com", "dsk1dn789");;
+			transport.connect("angi.lecas93@gmail.com", "dsk1dn789");
 			transport.sendMessage(msg, msg.getAllRecipients());
 			transport.close();
 			System.out.println("Correo enviado!");
