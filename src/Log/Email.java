@@ -49,8 +49,8 @@ public class Email {
 		props.put("mail.debug", true);
 		props.put("mail.smtp.auth", true);
 		props.put("mail.smtp.starttls.enable", true);
-		props.put("username", "angi.lecas93@gmail.com");
-		props.put("password", "dsk1dn789");
+		//props.put("username", "angi.lecas93@gmail.com");
+		//props.put("password", "dsk1dn789");
 
 		// Get session
 		Session session = Session.getInstance(props);
