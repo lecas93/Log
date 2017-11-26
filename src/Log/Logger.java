@@ -11,14 +11,6 @@ public class Logger {
 	// private static Logger log;
 	private Class currentClass;
 
-	/*public static enum Level {
-		INFO, WARNING, ERROR
-	}*/
-
-	/*public static enum Mode {
-		DEBUG, PRODUCTION
-	}*/
-
 	private static int currentLevel = 0;
 	private static int currentMode = 0;
 

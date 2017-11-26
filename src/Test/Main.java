@@ -41,8 +41,8 @@ public class Main {
 		log3.printLevel();
 		log2.printLevel();
 		*/
-		Email email = new Email();
-		email.sendMail2();
+		//Email email = new Email();
+		//email.sendMail2();
 	}
 	
 	public static void otroMetodo() {
