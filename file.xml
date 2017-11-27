@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<company>
-   <staff id="1">
-	<firstname>yong</firstname>
-	<lastname>mook kim</lastname>
-	<nickname>mkyong</nickname>
-	<salary>100000</salary>
-   </staff>
-</company>
+<logger>
+   	<config id="default">
+	   <mode>production</mode>
+	   <level>info</level>
+	   <filesize>2</filesize>
+	</config>
+
+	<config id="myConfig">
+	   <mode>debug</mode>
+	   <level>info</level>
+	   <filesize>5</filesize>
+	</config>
+</logger>

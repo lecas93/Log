@@ -64,16 +64,24 @@ public class Logger {
 
 	public void info(String msg) {
 		record = getCurrentThreadInformation() + " INFO: " + msg;
-		print(record);
+		if (currentLevel == Level.ALL.ordinal() || currentLevel == Level.INFO.ordinal()) {
+			print(record);
+		}
 	}
 
 	public void warning(String msg) {
 		record = getCurrentThreadInformation() + " WARNING: " + msg;
-		print(record);
+		if (currentLevel == Level.ALL.ordinal() || currentLevel == Level.INFO.ordinal()
+				|| currentLevel == Level.WARNING.ordinal()) {
+			print(record);
+		}
 	}
 
 	public void error(String msg) {
 		record = getCurrentThreadInformation() + " ERROR: " + msg;
-		print(record);
+		if (currentLevel == Level.ALL.ordinal() || currentLevel == Level.INFO.ordinal()
+				|| currentLevel == Level.WARNING.ordinal() || currentLevel == Level.ERROR.ordinal()) {
+			print(record);
+		}
 	}
 }
