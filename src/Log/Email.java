@@ -7,13 +7,19 @@ import javax.activation.*;
 
 public class Email {
 
-	public Email() {
+	private String host = "smtp.gmail.com";
+	private String to, from, pass;
+
+	public Email(String to, String from, String pass) {
+		this.to = to;
+		this.from = from;
+		this.pass = pass;
 	}
 
 	public void sendMail() {
-		String host = "smtp.gmail.com";
-		String from = "angi.lecas93@gmail.com";
-		String to = "angi.lecas93@gmail.com";
+		//String host = "smtp.gmail.com";
+		//String from = "angi.lecas93@gmail.com";
+		//String to = "angi.lecas93@gmail.com";
 
 		// Set properties
 		Properties props = new Properties();
@@ -21,6 +27,8 @@ public class Email {
 		props.put("mail.debug", true);
 		props.put("mail.smtp.auth", true);
 		props.put("mail.smtp.starttls.enable", true);
+		//props.put("username", from);
+		//props.put("password", pass);
 
 		// Get session
 		Session session = Session.getInstance(props);
@@ -46,7 +54,7 @@ public class Email {
 
 			// Send the message
 			Transport transport = session.getTransport("smtp");
-			transport.connect("angi.lecas93@gmail.com", "dsk1dn789");
+			transport.connect(from, pass);
 			transport.sendMessage(msg, msg.getAllRecipients());
 			transport.close();
 			System.out.println("Correo enviado!");

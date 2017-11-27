@@ -94,4 +94,8 @@ public class Logger {
 			print(record);
 		}
 	}
+	
+	public void sendEmail() {
+		
+	}
 }
