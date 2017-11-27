@@ -28,32 +28,32 @@ public class Logger {
 		bitacora = Bitacora.getInstance();
 		return log;
 	}
-	
+
 	private static void loadConfig() {
 		xmlParser.loadInfo();
 		currentLevel = XMLParser.getLevel();
 		currentMode = XMLParser.getMode();
 	}
 
-	public static void printLevel() {//
-		System.out.println("Mode: " + xmlParser.getMode());
-		System.out.println("Level: " + xmlParser.getLevel());
+	public void printLevel() {//
+		System.out.println("Mode: " + currentMode);
+		System.out.println("Level: " + currentLevel);
 		System.out.println("File Size: " + xmlParser.getFileSize());
 	}
 
-	public static void setLevel(Level level) {
+	public void setLevel(Level level) {
 		currentLevel = level.ordinal();
 	}
 
-	public static int getLevel() {//
+	public int getLevel() {
 		return currentLevel;
 	}
 
-	public static void setMode(Mode mode) {
+	public void setMode(Mode mode) {
 		currentMode = mode.ordinal();
 	}
 
-	public static int getMode() {//
+	public int getMode() {
 		return currentMode;
 	}
 
