@@ -2,7 +2,7 @@
 <logger>
    	<config>
 	   <mode>debug</mode>
-	   <level>error</level>
+	   <level>info</level>
 	   <filesize>5</filesize>
 	</config>
 </logger>
