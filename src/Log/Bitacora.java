@@ -1,8 +1,68 @@
 package Log;
 
 import java.io.File;
+import java.util.Date;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Bitacora {
+
+	private static Bitacora bitacora;
+
+	private String day, month, year;
+	private int fileCounter;
+	private String ruta;
+
+	private Bitacora() {
+
+	}
+
+	public static synchronized Bitacora getInstance() {
+		if (bitacora == null) {
+			bitacora = new Bitacora();
+		}
+		return bitacora;
+	}
+
+	private void updateRuta() {
+		String[] date = new Date().toString().split(" ");
+		day = date[2];
+		month = date[1];
+		year = date[5];
+		ruta = day + "-" + month + "-" + year + "_#" + fileCounter + ".txt";
+	}
+
+	private void checkFileSize() {
+		updateRuta();
+		File archivo = new File(ruta);
+		if (archivo.exists()) {
+			double kilobytes = (archivo.length() / 1024);
+			if (kilobytes >= 2) {
+				fileCounter++;
+				checkFileSize();
+			}
+		}
+	}
+
+	public void writeRecord(String record) {
+		fileCounter = 1;
+		checkFileSize();
+		File archivo = new File(ruta);
+		BufferedWriter bw;
+		try {
+			if (!archivo.exists()) {
+				archivo.createNewFile();
+			}
+			bw = new BufferedWriter(new FileWriter(archivo, true));
+			bw.write(record + "\n");
+			bw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public void getInformation() {
 		/* Total number of processors or cores available to the JVM */

@@ -8,28 +8,25 @@ import java.util.Date;
 
 public class Logger {
 
-	// private static Logger log;
 	private Class currentClass;
 
 	private static int currentLevel = Level.INFO.ordinal();
 	private static int currentMode = Mode.PRODUCTION.ordinal();
 
+	private static Bitacora bitacora;
+	private String record;
+
 	private Logger(Class currentClass) {
 		this.currentClass = currentClass;
 	}
 
-	/*
-	 * public static Logger getInstance() { if (log == null) { log = new Logger(); }
-	 * return log; }
-	 */
-
-	// Con este metodo NO se debe aplicar el patron Singleton
 	public static Logger getLogger(Class currentClass) {
 		Logger log = new Logger(currentClass);
+		bitacora = Bitacora.getInstance();
 		return log;
 	}
 
-	public static void printLevel() {
+	public static void printLevel() {//
 		System.out.println("Current level: " + currentLevel);
 	}
 
@@ -38,7 +35,7 @@ public class Logger {
 		printLevel();
 	}
 
-	public static int getLevel() {
+	public static int getLevel() {//
 		return currentLevel;
 	}
 
@@ -46,28 +43,37 @@ public class Logger {
 		currentMode = mode.ordinal();
 	}
 
-	public static int getMode() {
+	public static int getMode() {//
 		return currentMode;
 	}
 
-	private void printCurrentState() {
+	private String getCurrentThreadInformation() {
 		StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
-		System.out.println(
-				"" + new Date() + " " + currentClass.getSimpleName() + " " + stackTraceElements[3].getMethodName());
+		String info = "" + new Date() + " " + currentClass.getSimpleName() + " "
+				+ stackTraceElements[3].getMethodName();
+		return info;
+	}
+
+	private void print(String record) {
+		if (currentMode == Mode.DEBUG.ordinal()) {
+			System.out.println(record);
+		} else {
+			bitacora.writeRecord(record);
+		}
 	}
 
 	public void info(String msg) {
-		printCurrentState();
-		System.out.println("INFO: " + msg);
+		record = getCurrentThreadInformation() + " INFO: " + msg;
+		print(record);
 	}
 
 	public void warning(String msg) {
-		printCurrentState();
-		System.out.println("WARNING: " + msg);
+		record = getCurrentThreadInformation() + " WARNING: " + msg;
+		print(record);
 	}
 
 	public void error(String msg) {
-		printCurrentState();
-		System.out.println("ERROR: " + msg);
+		record = getCurrentThreadInformation() + " ERROR: " + msg;
+		print(record);
 	}
 }
