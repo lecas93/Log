@@ -66,7 +66,7 @@ public class Email {
 		}
 	}
 
-	private void generateReportByError() {
+	private void generateReportByErrorLevel() {
 		try {
 			File archivo = new File("archivo.txt");
 			Scanner sc = new Scanner(archivo);
