@@ -2,9 +2,6 @@ package Test;
 
 import Log.Logger;
 import Log.Mode;
-
-import java.util.Scanner;
-
 import Log.Email;
 import Log.Level;;
 
