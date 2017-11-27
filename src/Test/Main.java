@@ -11,9 +11,15 @@ public class Main {
 		// TODO Auto-generated method stub
 
 		// Logger logger = Logger.getInstance();
+		Logger.getLogger(Main.class);
 		Logger.setLevel(Level.INFO);
 		Logger.setMode(Mode.DEBUG);
+		
+		
+		
+		Logger.printLevel();
 
+		/*
 		otroMetodo();
 		otroMetodo2();
 		yoloMetodo();
@@ -30,6 +36,7 @@ public class Main {
 		log4.printLevel();
 		log3.printLevel();
 		log2.printLevel();
+		*/
 
 
 		// Email email = new Email();

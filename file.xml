@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <logger>
-   	<config id="default">
-	   <mode>production</mode>
-	   <level>info</level>
-	   <filesize>2</filesize>
-	</config>
-
-	<config id="myConfig">
+   	<config>
 	   <mode>debug</mode>
-	   <level>info</level>
+	   <level>error</level>
 	   <filesize>5</filesize>
 	</config>
 </logger>

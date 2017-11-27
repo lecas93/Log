@@ -19,15 +19,18 @@ import org.xml.sax.SAXException;
 
 public class XMLParser {
 
-	public void parser() {
+	private static int mode = 1, level = 1;
+	private static double fileSize = 1024;
+
+	public static void parser() {
 		try {
-			String filepath = "c:\\file.xml";
+			String filepath = "file.xml";
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
 			Document doc = docBuilder.parse(filepath);
 
 			// Get the root element
-			Node company = doc.getFirstChild();
+			Node logger = doc.getFirstChild();
 
 			// Get the staff element , it may not working if tag has spaces, or
 			// whatever weird characters in front...it's better to use
@@ -35,55 +38,90 @@ public class XMLParser {
 			// Node staff = company.getFirstChild();
 
 			// Get the staff element by tag name directly
-			Node staff = doc.getElementsByTagName("staff").item(0);
-
-			// update staff attribute
-			NamedNodeMap attr = staff.getAttributes();
-			Node nodeAttr = attr.getNamedItem("id");
-			nodeAttr.setTextContent("2");
-
-			// append a new node to staff
-			Element age = doc.createElement("age");
-			age.appendChild(doc.createTextNode("28"));
-			staff.appendChild(age);
+			Node config = doc.getElementsByTagName("config").item(0);
 
 			// loop the staff child node
-			NodeList list = staff.getChildNodes();
+			NodeList list = config.getChildNodes();
 
 			for (int i = 0; i < list.getLength(); i++) {
 
 				Node node = list.item(i);
 
-				// get the salary element, and update the value
-				if ("salary".equals(node.getNodeName())) {
-					node.setTextContent("2000000");
+				if ("mode".equals(node.getNodeName())) {
+					mode = (node.getTextContent() == "production" ? 1 : 0);
+
+					switch (node.getTextContent()) {
+					case "debug":
+						mode = 0;
+						break;
+					case "production":
+						mode = 1;
+						break;
+					default:
+						mode = 1;
+					}
 				}
 
-				// remove firstname
-				if ("firstname".equals(node.getNodeName())) {
-					staff.removeChild(node);
+				if ("level".equals(node.getNodeName())) {
+					switch (node.getTextContent()) {
+					case "all":
+						level = 0;
+						break;
+					case "info":
+						level = 1;
+						break;
+					case "warning":
+						level = 2;
+						break;
+					case "error":
+						level = 3;
+						break;
+					case "off":
+						level = 4;
+						break;
+					default:
+						level = 1;
+						break;
+					}
+				}
+
+				if ("filesize".equals(node.getNodeName())) {
+					fileSize = Double.parseDouble(node.getTextContent());
+				} else {
+					fileSize = 1024;
 				}
 
 			}
 
-			// write the content into xml file
-			TransformerFactory transformerFactory = TransformerFactory.newInstance();
-			Transformer transformer = transformerFactory.newTransformer();
-			DOMSource source = new DOMSource(doc);
-			StreamResult result = new StreamResult(new File(filepath));
-			transformer.transform(source, result);
-
-			System.out.println("Done");
-
-		} catch (ParserConfigurationException pce) {
-			pce.printStackTrace();
-		} catch (TransformerException tfe) {
-			tfe.printStackTrace();
-		} catch (IOException ioe) {
-			ioe.printStackTrace();
-		} catch (SAXException sae) {
-			sae.printStackTrace();
+			/*
+			 * // write the content into xml file TransformerFactory transformerFactory =
+			 * TransformerFactory.newInstance(); Transformer transformer =
+			 * transformerFactory.newTransformer(); DOMSource source = new DOMSource(doc);
+			 * StreamResult result = new StreamResult(new File(filepath));
+			 * transformer.transform(source, result);
+			 */
+		} catch (Exception e) {
+			e.printStackTrace();
+			setDefaultValues();
 		}
+	}
+
+	private static void setDefaultValues() {
+		mode = 1;
+		level = 1;
+		fileSize = 1024;
+	}
+
+	public static int getLevel() {
+		return level;
+	}
+
+	public static int getMode() {
+		return mode;
+	}
+
+	public static double getFileSize() {
+		return fileSize;
 	}
 
 }

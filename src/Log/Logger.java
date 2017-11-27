@@ -15,6 +15,8 @@ public class Logger {
 
 	private static Bitacora bitacora;
 	private String record;
+	
+	private static XMLParser xmlParser;
 
 	private Logger(Class currentClass) {
 		this.currentClass = currentClass;
@@ -22,17 +24,20 @@ public class Logger {
 
 	public static Logger getLogger(Class currentClass) {
 		Logger log = new Logger(currentClass);
+		xmlParser.parser();
 		bitacora = Bitacora.getInstance();
 		return log;
 	}
 
 	public static void printLevel() {//
-		System.out.println("Current level: " + currentLevel);
+		//System.out.println("Current level: " + currentLevel);
+		System.out.println(xmlParser.getMode());
+		System.out.println(xmlParser.getLevel());
+		System.out.println(xmlParser.getFileSize());
 	}
 
 	public static void setLevel(Level level) {
 		currentLevel = level.ordinal();
-		printLevel();
 	}
 
 	public static int getLevel() {//
