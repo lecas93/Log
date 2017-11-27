@@ -12,15 +12,17 @@ public class Main {
 
 		// Logger logger = Logger.getInstance();
 		Logger.getLogger(Main.class);
-		Logger.setLevel(Level.INFO);
-		Logger.setMode(Mode.DEBUG);
+		
+		//Logger.setLevel(Level.INFO);
+		//Logger.setMode(Mode.DEBUG);
 		
 		Logger.printLevel();
 		
-		otroMetodo();
-		otroMetodo2();
-		yoloMetodo();
+		//otroMetodo();
+		//otroMetodo2();
+		//yoloMetodo();
 
+		/*
 		Logger log2 = Logger.getLogger(Main.class);
 		log2.info("Hola");
 
@@ -29,6 +31,7 @@ public class Main {
 
 		Logger log4 = Logger.getLogger(Main.class);
 		log4.warning("Este es un warning");
+		*/
 
 		// Email email = new Email();
 		// email.sendMail2();

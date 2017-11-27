@@ -19,37 +19,32 @@ import org.xml.sax.SAXException;
 
 public class XMLParser {
 
-	private static int mode = 1, level = 1;
-	private static double fileSize = 1024;
+	private static int mode, level;
+	private static double fileSize;
 
-	public static void parser() {
+	private static final int DEFAULT_MODE = Mode.PRODUCTION.ordinal();
+	private static final int DEFAULT_LEVEL = Level.INFO.ordinal();
+	private static final double DEFAULT_SIZE = 1024;
+
+	public static void loadInfo() {
 		try {
-			String filepath = "file.xml";
+			String filepath = "config.xml";
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
 			Document doc = docBuilder.parse(filepath);
 
-			// Get the root element
-			Node logger = doc.getFirstChild();
-
-			// Get the staff element , it may not working if tag has spaces, or
-			// whatever weird characters in front...it's better to use
-			// getElementsByTagName() to get it directly.
-			// Node staff = company.getFirstChild();
-
-			// Get the staff element by tag name directly
 			Node config = doc.getElementsByTagName("config").item(0);
 
-			// loop the staff child node
 			NodeList list = config.getChildNodes();
+			System.out.println("list length = " + list.getLength());
 
 			for (int i = 0; i < list.getLength(); i++) {
+				System.out.println("i = " + i);
 
 				Node node = list.item(i);
 
 				if ("mode".equals(node.getNodeName())) {
-					mode = (node.getTextContent() == "production" ? 1 : 0);
-
+					System.out.println("entro al if mode");
 					switch (node.getTextContent()) {
 					case "debug":
 						mode = 0;
@@ -58,11 +53,16 @@ public class XMLParser {
 						mode = 1;
 						break;
 					default:
-						mode = 1;
+						mode = DEFAULT_MODE;
+						break;
 					}
+				} else {
+					System.out.println("no entro al if mode");
+					mode = DEFAULT_MODE;
 				}
 
 				if ("level".equals(node.getNodeName())) {
+					System.out.println("entro al if level");
 					switch (node.getTextContent()) {
 					case "all":
 						level = 0;
@@ -80,26 +80,27 @@ public class XMLParser {
 						level = 4;
 						break;
 					default:
-						level = 1;
+						level = DEFAULT_LEVEL;
 						break;
 					}
+				} else {
+					System.out.println("no entro al if level");
+					level = DEFAULT_LEVEL;
 				}
 
 				if ("filesize".equals(node.getNodeName())) {
+					System.out.println("entro al if filesize");
 					fileSize = Double.parseDouble(node.getTextContent());
+					if (fileSize < 0)
+						fileSize = DEFAULT_SIZE;
 				} else {
-					fileSize = 1024;
+					System.out.println("no entro al filesize");
+					fileSize = DEFAULT_SIZE;
 				}
-
 			}
-
-			/*
-			 * // write the content into xml file TransformerFactory transformerFactory =
-			 * TransformerFactory.newInstance(); Transformer transformer =
-			 * transformerFactory.newTransformer(); DOMSource source = new DOMSource(doc);
-			 * StreamResult result = new StreamResult(new File(filepath));
-			 * transformer.transform(source, result);
-			 */
+		} catch (NumberFormatException nfe) {
+			nfe.printStackTrace();
+			fileSize = DEFAULT_SIZE;
 		} catch (Exception e) {
 			e.printStackTrace();
 			setDefaultValues();
@@ -107,9 +108,9 @@ public class XMLParser {
 	}
 
 	private static void setDefaultValues() {
-		mode = 1;
-		level = 1;
-		fileSize = 1024;
+		mode = DEFAULT_MODE;
+		level = DEFAULT_LEVEL;
+		fileSize = DEFAULT_SIZE;
 	}
 
 	public static int getLevel() {

@@ -40,7 +40,7 @@ public class Bitacora {
 		File archivo = new File(ruta);
 		if (archivo.exists()) {
 			double kilobytes = (archivo.length() / 1024);
-			if (kilobytes >= 2) {
+			if (kilobytes >= XMLParser.getFileSize()) {
 				fileCounter++;
 				checkFileSize();
 			}

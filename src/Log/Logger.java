@@ -10,8 +10,8 @@ public class Logger {
 
 	private Class currentClass;
 
-	private static int currentLevel = Level.INFO.ordinal();
-	private static int currentMode = Mode.PRODUCTION.ordinal();
+	private static int currentLevel;
+	private static int currentMode;
 
 	private static Bitacora bitacora;
 	private String record;
@@ -24,16 +24,21 @@ public class Logger {
 
 	public static Logger getLogger(Class currentClass) {
 		Logger log = new Logger(currentClass);
-		xmlParser.parser();
+		loadConfig();
 		bitacora = Bitacora.getInstance();
 		return log;
 	}
+	
+	private static void loadConfig() {
+		xmlParser.loadInfo();
+		currentLevel = XMLParser.getLevel();
+		currentMode = XMLParser.getMode();
+	}
 
 	public static void printLevel() {//
-		// System.out.println("Current level: " + currentLevel);
-		System.out.println(xmlParser.getMode());
-		System.out.println(xmlParser.getLevel());
-		System.out.println(xmlParser.getFileSize());
+		System.out.println("Mode: " + xmlParser.getMode());
+		System.out.println("Level: " + xmlParser.getLevel());
+		System.out.println("File Size: " + xmlParser.getFileSize());
 	}
 
 	public static void setLevel(Level level) {
