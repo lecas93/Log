@@ -1,5 +1,6 @@
 package Log;
 
+import java.io.File;
 import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
@@ -9,6 +10,7 @@ public class Email {
 
 	private String host = "smtp.gmail.com";
 	private String to, from, pass;
+	private String message = "Ejemplo";
 
 	public Email(String to, String from, String pass) {
 		this.to = to;
@@ -17,9 +19,9 @@ public class Email {
 	}
 
 	public void sendMail() {
-		//String host = "smtp.gmail.com";
-		//String from = "angi.lecas93@gmail.com";
-		//String to = "angi.lecas93@gmail.com";
+		// String host = "smtp.gmail.com";
+		// String from = "angi.lecas93@gmail.com";
+		// String to = "angi.lecas93@gmail.com";
 
 		// Set properties
 		Properties props = new Properties();
@@ -27,8 +29,8 @@ public class Email {
 		props.put("mail.debug", true);
 		props.put("mail.smtp.auth", true);
 		props.put("mail.smtp.starttls.enable", true);
-		//props.put("username", from);
-		//props.put("password", pass);
+		// props.put("username", from);
+		// props.put("password", pass);
 
 		// Get session
 		Session session = Session.getInstance(props);
@@ -50,7 +52,7 @@ public class Email {
 			msg.setSentDate(new Date());
 
 			// Set message content
-			msg.setText("This is the text for this simple demo using JavaMail.");
+			msg.setText(message);
 
 			// Send the message
 			Transport transport = session.getTransport("smtp");
@@ -61,6 +63,19 @@ public class Email {
 
 		} catch (MessagingException mex) {
 			mex.printStackTrace();
+		}
+	}
+
+	private void generateReportByError() {
+		try {
+			File archivo = new File("archivo.txt");
+			Scanner sc = new Scanner(archivo);
+			while (sc.hasNext()) {
+				System.out.println(sc.next());
+			}
+			sc.close();
+		} catch (Exception e) {
+
 		}
 	}
 
