@@ -11,8 +11,8 @@ public class Logger {
 	// private static Logger log;
 	private Class currentClass;
 
-	private static int currentLevel = 0;
-	private static int currentMode = 0;
+	private static int currentLevel = Level.INFO.ordinal();
+	private static int currentMode = Mode.PRODUCTION.ordinal();
 
 	private Logger(Class currentClass) {
 		this.currentClass = currentClass;
@@ -37,9 +37,17 @@ public class Logger {
 		currentLevel = level.ordinal();
 		printLevel();
 	}
-	
+
+	public static int getLevel() {
+		return currentLevel;
+	}
+
 	public static void setMode(Mode mode) {
 		currentMode = mode.ordinal();
+	}
+
+	public static int getMode() {
+		return currentMode;
 	}
 
 	private void printCurrentState() {
