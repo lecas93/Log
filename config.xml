@@ -4,5 +4,9 @@
 	   <mode>debug</mode>
 	   <level>info</level>
 	   <filesize>1024</filesize>
+	   
+	   <emailTO></emailTO>
+	   <emailFROM></emailFROM>
+	   <emailPASS></emailPASS>
 	</config>
 </logger>
