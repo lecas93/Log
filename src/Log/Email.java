@@ -19,18 +19,17 @@ public class Email {
 	}
 
 	public void sendMail() {
-		// String host = "smtp.gmail.com";
-		// String from = "angi.lecas93@gmail.com";
-		// String to = "angi.lecas93@gmail.com";
+		System.out.println("Enviando email...");
 
 		// Set properties
 		Properties props = new Properties();
 		props.put("mail.smtp.host", host);
 		props.put("mail.debug", true);
+		props.put("mail.smtp.port", "587");
 		props.put("mail.smtp.auth", true);
 		props.put("mail.smtp.starttls.enable", true);
-		// props.put("username", from);
-		// props.put("password", pass);
+		props.put("username", from);
+		props.put("password", pass);
 
 		// Get session
 		Session session = Session.getInstance(props);
