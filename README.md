@@ -28,6 +28,9 @@ Donde:
 * `emailFROM`: El correo anfitrión desde el cual se conectará la librearía para enviar los logs
 * `emailPASS`: La contraseña del correo anfitrión para poder realizar la conexión
 
+**El archivo `config.xml` debe estar ubicado en la carpeta raíz del proyecto.**
+**Si la libreria no encuentra el archivo o este no tiene el formato antes proporcionado, la librería cargará los valores por defecto: `mode = production` y `level = info`**
+
 ## ¿Cómo utilizar?
 
 **Log** es muy sencillo de utilizar. Basta con que obtengas una instancia de Logger al inicio de cada clase donde desees utilizarlo y  posteriormente ya podras llamar a las funciones que necesites.
