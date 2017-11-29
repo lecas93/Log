@@ -7,7 +7,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class XMLParser {	
-	private static Logger logger;
 	private static XMLParser xmlParser;
 
 	private static int mode, level;
@@ -24,7 +23,6 @@ public class XMLParser {
 		if (xmlParser == null) {
 			xmlParser = new XMLParser();
 			loadInfo();
-			logger = Logger.getLogger(XMLParser.class);
 		}
 		return xmlParser;
 	}
@@ -96,13 +94,12 @@ public class XMLParser {
 				}
 			}
 		} catch (NumberFormatException nfe) {
-			nfe.printStackTrace();
+			System.out.println(nfe.getMessage());
 			fileSize = DEFAULT_SIZE;
-			logger.error(nfe.getMessage());
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
+			System.out.println("Un error ha ocurrido en la lectura del archivo XML!\nSe han cargado los valores por defecto!");
 			setDefaultValues();
-			logger.error(e.getMessage());
 		}
 	}
 

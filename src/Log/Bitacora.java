@@ -65,7 +65,7 @@ public class Bitacora {
 			bw.write(record + "\n");
 			bw.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}
 	
