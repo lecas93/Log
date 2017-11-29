@@ -86,8 +86,6 @@ día.
 	* **debug**: Las notificaciones de la bitácora son arrojados en consola.
 	* **production**:  Las notificaciones de la bitácora son registradas en archivos.
 
-## Clases
-
 <!--
 ### Clase x
 * Descripción:
