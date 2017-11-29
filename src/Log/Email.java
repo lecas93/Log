@@ -97,6 +97,8 @@ public class Email {
 			transport.close();
 		} catch (MessagingException mex) {
 			logger.error(mex.getMessage());
+		} catch (Exception e) {
+			logger.error(e.getMessage());
 		}
 	}
 
