@@ -37,7 +37,7 @@ public class Logger {
 	public void printLogStatus() {
 		System.out.println("Mode: " + currentMode);
 		System.out.println("Level: " + currentLevel);
-		System.out.println("File Size: " + xmlParser.getFileSize() + "KB");
+		System.out.println("File Size: " + xmlParser.getFileSize() + " KB");
 	}
 
 	public void setLevel(Level level) {

@@ -23,7 +23,9 @@ public class Main {
 		otroMetodo2();
 		yoloMetodo();
 		
-		logger.sendEmail();
+		MyClass m = new MyClass();
+		
+		//logger.sendEmail();
 
 		/*
 		 * Logger log2 = Logger.getLogger(Main.class); log2.info("Hola");
