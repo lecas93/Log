@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<logger>
-   	<config>
-	   <mode>debug</mode>
-	   <level>all</level>
-	   <filesize>1024</filesize>
-
-	   <emailTO>angi.lecas93@gmail.com</emailTO>
-	   <emailFROM>angi.lecas93@gmail.com</emailFROM>
-	   <emailPASS>myPassHere</emailPASS>
-	</config>
-</logger>
+<config>
+   <mode>debug</mode>
+   <level>all</level>
+   <filesize>1024</filesize>
+   <emailTO>angi.lecas93@gmail.com</emailTO>
+   <emailFROM>angi.lecas93@gmail.com</emailFROM>
+   <emailPASS>myPassHere</emailPASS>
+</config>

@@ -23,7 +23,7 @@ public class Main {
 		otroMetodo2();
 		yoloMetodo();
 		
-		//logger.sendEmail(Level.WARNING);
+		logger.sendEmail();
 
 		/*
 		 * Logger log2 = Logger.getLogger(Main.class); log2.info("Hola");
