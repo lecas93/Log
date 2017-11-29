@@ -14,8 +14,7 @@ El archivo debe ser creado de la siguiente manera:
 <config>
 	<mode>debug</mode>
 	<level>info</level>
-	<filesize>1024</filesize>
-	
+	<filesize>1024</filesize>	
 	<emailTO>angi.lecas93@gmail.com</emailTO>
 	<emailFROM>angi.lecas93@gmail.com</emailFROM>
 	<emailPASS>myPassHere</emailPASS>
