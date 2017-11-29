@@ -13,6 +13,7 @@ public class Bitacora {
 
 	private String day, month, year;
 	private int fileCounter;
+	private String path = "logs/";
 	private String ruta;
 
 	private Bitacora() {
@@ -31,7 +32,8 @@ public class Bitacora {
 		day = date[2];
 		month = date[1];
 		year = date[5];
-		ruta = day + "-" + month + "-" + year + "_#" + fileCounter + ".txt";
+		String s = day + "-" + month + "-" + year;
+		ruta = path + s + "/" + s + "_#" + fileCounter + ".txt";
 	}
 
 	private void checkFileSize() {
