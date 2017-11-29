@@ -32,8 +32,8 @@ public class Main {
 		 * log4.warning("Este es un warning");
 		 */
 
-		Email email = new Email("angi.lecas93@gmail.com","angi.lecas93@gmail.com","myPass");
-		email.sendMail();
+		//Email email = new Email();
+		//email.sendMail();
 	}
 
 	public void nuevoMetodo() {

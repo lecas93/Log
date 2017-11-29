@@ -24,13 +24,13 @@ public class Logger {
 
 	public static Logger getLogger(Class currentClass) {
 		Logger log = new Logger(currentClass);
-		loadConfig();
+		loadConfigFromXML();
 		bitacora = Bitacora.getInstance();
 		return log;
 	}
 
-	private static void loadConfig() {
-		xmlParser.loadInfo();
+	private static void loadConfigFromXML() {
+		xmlParser = XMLParser.getInstance();
 		currentLevel = XMLParser.getLevel();
 		currentMode = XMLParser.getMode();
 	}

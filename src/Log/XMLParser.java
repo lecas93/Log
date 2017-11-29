@@ -6,16 +6,30 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-public class XMLParser {
+public class XMLParser {	
+	private static Logger logger;
+	private static XMLParser xmlParser;
 
 	private static int mode, level;
 	private static double fileSize;
+	private static String emailTO = "", emailFROM = "", emailPASS = "";
 
 	private static final int DEFAULT_MODE = Mode.PRODUCTION.ordinal();
 	private static final int DEFAULT_LEVEL = Level.INFO.ordinal();
 	private static final double DEFAULT_SIZE = 1024;
+	
+	private XMLParser() {}
+	
+	public static synchronized XMLParser getInstance() {
+		if (xmlParser == null) {
+			xmlParser = new XMLParser();
+			loadInfo();
+			logger = Logger.getLogger(XMLParser.class);
+		}
+		return xmlParser;
+	}
 
-	public static void loadInfo() {
+	private static void loadInfo() {
 		setDefaultValues();
 		try {
 			String filepath = "config.xml";
@@ -70,13 +84,25 @@ public class XMLParser {
 					if (fileSize < 0)
 						fileSize = DEFAULT_SIZE;
 				}
+
+				if ("emailTO".equals(node.getNodeName())) {
+					emailTO = node.getTextContent();
+				}
+				if ("emailFROM".equals(node.getNodeName())) {
+					emailFROM = node.getTextContent();
+				}
+				if ("emailPASS".equals(node.getNodeName())) {
+					emailPASS = node.getTextContent();
+				}
 			}
 		} catch (NumberFormatException nfe) {
 			nfe.printStackTrace();
 			fileSize = DEFAULT_SIZE;
+			logger.error(nfe.getMessage());
 		} catch (Exception e) {
 			e.printStackTrace();
 			setDefaultValues();
+			logger.error(e.getMessage());
 		}
 	}
 
@@ -96,6 +122,11 @@ public class XMLParser {
 
 	public static double getFileSize() {
 		return fileSize;
+	}
+
+	public static String[] getEmailInfo() {
+		String[] emailInfo = { emailTO, emailFROM, emailPASS };
+		return emailInfo;
 	}
 
 }

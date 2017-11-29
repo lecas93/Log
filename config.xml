@@ -4,9 +4,9 @@
 	   <mode>debug</mode>
 	   <level>info</level>
 	   <filesize>1024</filesize>
-	   
-	   <emailTO></emailTO>
-	   <emailFROM></emailFROM>
-	   <emailPASS></emailPASS>
+
+	   <emailTO>angi.lecas93@gmail.com</emailTO>
+	   <emailFROM>angi.lecas93@gmail.com</emailFROM>
+	   <emailPASS>myPassHere</emailPASS>
 	</config>
 </logger>

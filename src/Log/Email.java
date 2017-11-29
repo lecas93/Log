@@ -4,18 +4,21 @@ import java.io.File;
 import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
-import javax.activation.*;
+//import javax.activation.*;
 
 public class Email {
+	private Logger logger;
 
 	private String host = "smtp.gmail.com";
 	private String to, from, pass;
 	private String message = "Ejemplo";
 
-	public Email(String to, String from, String pass) {
-		this.to = to;
-		this.from = from;
-		this.pass = pass;
+	public Email() {
+		logger = Logger.getLogger(this.getClass());
+		String emailInfo[] = XMLParser.getEmailInfo();
+		this.to = emailInfo[0];
+		this.from = emailInfo[1];
+		this.pass = emailInfo[2];
 	}
 
 	public void sendMail() {
@@ -24,7 +27,7 @@ public class Email {
 		// Set properties
 		Properties props = new Properties();
 		props.put("mail.smtp.host", host);
-		//props.put("mail.debug", true);
+		props.put("mail.debug", true);
 		props.put("mail.smtp.port", "587");
 		props.put("mail.smtp.auth", true);
 		props.put("mail.smtp.starttls.enable", true);
@@ -59,9 +62,9 @@ public class Email {
 			transport.sendMessage(msg, msg.getAllRecipients());
 			transport.close();
 			System.out.println("Correo enviado!");
-
 		} catch (MessagingException mex) {
-			mex.printStackTrace();
+			//mex.printStackTrace();
+			logger.info(mex.getMessage());
 		}
 	}
 
