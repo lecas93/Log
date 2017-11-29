@@ -35,7 +35,7 @@ Donde:
 
 **Log** es muy sencillo de utilizar. Basta con que obtengas una instancia de Logger al inicio de cada clase donde desees utilizarlo y  posteriormente ya podras llamar a las funciones que necesites.
 
-## Ejemplo:
+## Ejemplo básico:
 ```Java
 package Test;
 
@@ -81,6 +81,7 @@ tamaño máximo que tendrán los archivos de la bitácora.
 día.
 
 * Envío de reportes por email, teniendo la opción de configurar los reportes por nivel de error.
+	* Los email solo contienen los registros del dia actual. Ver [Ejemplo](https://github.com/lecas93/Log/blob/master/src/Test/Main.java).
 
 * Separación entre nivel implementación (debug o producción).
 	* **debug**: Las notificaciones de la bitácora son arrojados en consola.
