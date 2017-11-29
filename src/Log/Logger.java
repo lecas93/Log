@@ -18,6 +18,8 @@ public class Logger {
 
 	private static XMLParser xmlParser;
 
+	private static Email email;
+
 	private Logger(Class currentClass) {
 		this.currentClass = currentClass;
 	}
@@ -26,6 +28,7 @@ public class Logger {
 		Logger log = new Logger(currentClass);
 		loadConfigFromXML();
 		bitacora = Bitacora.getInstance();
+		email = Email.getInstance();
 		return log;
 	}
 
@@ -89,13 +92,13 @@ public class Logger {
 
 	public void error(String msg) {
 		record = getCurrentThreadInformation() + " ERROR: " + msg;
-		if (currentLevel == Level.ALL.ordinal() || currentLevel == Level.INFO.ordinal()
-				|| currentLevel == Level.WARNING.ordinal() || currentLevel == Level.ERROR.ordinal()) {
+		if (currentLevel == Level.ALL.ordinal() || currentLevel == Level.WARNING.ordinal()
+				|| currentLevel == Level.ERROR.ordinal()) {
 			print(record);
 		}
 	}
-	
+
 	public void sendEmail() {
-		
+		email.sendMail();
 	}
 }

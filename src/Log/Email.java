@@ -7,18 +7,27 @@ import javax.mail.internet.*;
 //import javax.activation.*;
 
 public class Email {
-	private Logger logger;
+	private static Logger logger;
+	
+	private static Email email;
 
 	private String host = "smtp.gmail.com";
 	private String to, from, pass;
 	private String message = "Ejemplo";
 
-	public Email() {
-		logger = Logger.getLogger(this.getClass());
+	private Email() {
 		String emailInfo[] = XMLParser.getEmailInfo();
 		this.to = emailInfo[0];
 		this.from = emailInfo[1];
 		this.pass = emailInfo[2];
+	}
+	
+	public static synchronized Email getInstance() {
+		if (email == null) {
+			email = new Email();		
+			logger = Logger.getLogger(Email.class);
+		}
+		return email;
 	}
 
 	public void sendMail() {
@@ -64,7 +73,7 @@ public class Email {
 			System.out.println("Correo enviado!");
 		} catch (MessagingException mex) {
 			//mex.printStackTrace();
-			logger.info(mex.getMessage());
+			logger.error(mex.getMessage());
 		}
 	}
 
