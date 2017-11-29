@@ -74,7 +74,7 @@ public class MyClass {
 
 ## Características
 
-* Bitácora configurable por nivel (WARNING, ERROR, INFO, etc.) y el 
+* Bitácora configurable (via archivo XML o código) por nivel (WARNING, ERROR, INFO, etc.) y el 
 tamaño máximo que tendrán los archivos de la bitácora.
 
 * Bitácora almacenada por archivos, los cuales son separados por 
