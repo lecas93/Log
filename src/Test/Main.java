@@ -13,31 +13,25 @@ public class Main {
 		// TODO Auto-generated method stub
 
 		logger = Logger.getLogger(Main.class);
+		
+		//Estableciendo el nivel y el modo desde código
+		logger.setLevel(Level.INFO);
+		logger.setMode(Mode.DEBUG);
 
-		// logger.setLevel(Level.INFO);
-		// logger.setMode(Mode.DEBUG);
-
+		//Función que sirve para imprimir en consola la configuracion actual de Log
 		logger.printLogStatus();
 
 		otroMetodo();
 		otroMetodo2();
 		yoloMetodo();
 		
-		MyClass m = new MyClass();
+		//Envio de email normal
+		//El email contendrá todos los regitros del log del dia actual
+		logger.sendEmail();
 		
-		//logger.sendEmail();
-
-		/*
-		 * Logger log2 = Logger.getLogger(Main.class); log2.info("Hola");
-		 * 
-		 * Logger log3 = Logger.getLogger(Main.class); log3.info("Hola de nuevo");
-		 * 
-		 * Logger log4 = Logger.getLogger(Main.class);
-		 * log4.warning("Este es un warning");
-		 */
-
-		//Email email = new Email();
-		//email.sendMail();
+		//Envio de email por nivel de error
+		//El email solo contendrá los regitros del log del nivel especificado del dia actual
+		logger.sendEmail(Level.WARNING);
 	}
 
 	public void nuevoMetodo() {
