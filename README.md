@@ -1,2 +1,2 @@
 # Log
-Repositorio para proyecto de Arquitectura de Software 2017: Log
+**Log** es una libreria sencilla que te ayudara en el manejo del registro de actividad.
