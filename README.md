@@ -3,7 +3,7 @@
 
 ## Primeros pasos
 
-Para utilizar Log solo necesitas importar en tus proyectos el archivo `Log.jar` que puedes descarga [aquí](http://google.com). Y también debes importar la librería de `JavaMail 1.4.7` que igualmente puedes descargar desde este [enlace](https://mvnrepository.com/artifact/javax.mail/mail/1.4.7).
+Para utilizar Log solo necesitas importar en tus proyectos el archivo `Log.jar` que puedes descarga [aquí](https://drive.google.com/open?id=1tOjR6zdexpncdnSsdTiNvBCfdj13L7Bt). Y también debes importar la librería de `JavaMail 1.4.7` que igualmente puedes descargar desde este [enlace](https://mvnrepository.com/artifact/javax.mail/mail/1.4.7).
 
 ## Configuración inicial
 
