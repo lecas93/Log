@@ -17,13 +17,13 @@ public class Main {
 		// logger.setLevel(Level.INFO);
 		// logger.setMode(Mode.DEBUG);
 
-		logger.printLevel();
+		logger.printLogStatus();
 
 		otroMetodo();
 		otroMetodo2();
 		yoloMetodo();
 		
-		logger.sendEmail();
+		//logger.sendEmail(Level.WARNING);
 
 		/*
 		 * Logger log2 = Logger.getLogger(Main.class); log2.info("Hola");

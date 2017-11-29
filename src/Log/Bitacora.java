@@ -13,7 +13,8 @@ public class Bitacora {
 
 	private String day, month, year;
 	private int fileCounter;
-	private String path = "logs/";
+	private static String path = "logs/";
+	private String subFolder;
 	private String ruta;
 
 	private Bitacora() {
@@ -32,37 +33,44 @@ public class Bitacora {
 		day = date[2];
 		month = date[1];
 		year = date[5];
-		String s = day + "-" + month + "-" + year;
-		ruta = path + s + "/" + s + "_#" + fileCounter + ".txt";
+		subFolder = day + "-" + month + "-" + year;
+		ruta = path + subFolder + "/" + subFolder + "_#" + fileCounter + ".txt";
 	}
 
-	private void checkFileSize() {
+	private void checkFileSize() throws IOException {
 		updateRuta();
+		File folder = new File(path + subFolder);
 		File archivo = new File(ruta);
+		if(!folder.exists()) {
+			folder.mkdirs();
+		} 
 		if (archivo.exists()) {
 			double kilobytes = (archivo.length() / 1024);
 			if (kilobytes >= XMLParser.getFileSize()) {
 				fileCounter++;
 				checkFileSize();
 			}
+		} else {
+			archivo.createNewFile();
 		}
 	}
 
 	public void writeRecord(String record) {
-		fileCounter = 1;
-		checkFileSize();
-		File archivo = new File(ruta);
-		BufferedWriter bw;
 		try {
-			if (!archivo.exists()) {
-				archivo.createNewFile();
-			}
+			fileCounter = 1;
+			checkFileSize();
+			File archivo = new File(ruta);
+			BufferedWriter bw;
 			bw = new BufferedWriter(new FileWriter(archivo, true));
 			bw.write(record + "\n");
 			bw.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static String getLogDirectory() {
+		return path;
 	}
 
 	public void getInformation() {

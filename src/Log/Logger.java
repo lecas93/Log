@@ -2,10 +2,6 @@ package Log;
 
 import java.util.Date;
 
-//TODO
-//setLevel es decir, establecer los niveles
-//crear las funciones por cada nivel establecido
-
 public class Logger {
 
 	private Class currentClass;
@@ -38,10 +34,10 @@ public class Logger {
 		currentMode = XMLParser.getMode();
 	}
 
-	public void printLevel() {//
+	public void printLogStatus() {
 		System.out.println("Mode: " + currentMode);
 		System.out.println("Level: " + currentLevel);
-		System.out.println("File Size: " + xmlParser.getFileSize());
+		System.out.println("File Size: " + xmlParser.getFileSize() + "KB");
 	}
 
 	public void setLevel(Level level) {
@@ -100,5 +96,9 @@ public class Logger {
 
 	public void sendEmail() {
 		email.sendMail();
+	}
+
+	public void sendEmail(Level level) {
+		email.sendEmail(level);
 	}
 }
