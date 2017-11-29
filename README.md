@@ -81,7 +81,7 @@ tamaño máximo que tendrán los archivos de la bitácora.
 día.
 
 * Envío de reportes por email, teniendo la opción de configurar los reportes por nivel de error.
-	* Los email solo contienen los registros del dia actual. Ver [Ejemplo](https://github.com/lecas93/Log/blob/master/src/Test/Main.java).
+	* Los email solo envian los registros del dia actual. Ver [Ejemplo](https://github.com/lecas93/Log/blob/master/src/Test/Main.java).
 
 * Separación entre nivel implementación (debug o producción).
 	* **debug**: Las notificaciones de la bitácora son arrojados en consola.
