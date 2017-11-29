@@ -2,7 +2,6 @@ package Test;
 
 import Log.Logger;
 import Log.Mode;
-import Log.Email;
 import Log.Level;;
 
 public class Main {
