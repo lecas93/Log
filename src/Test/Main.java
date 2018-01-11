@@ -2,7 +2,7 @@ package Test;
 
 import Log.Logger;
 import Log.Mode;
-import Log.Level;;
+import Log.Level;
 
 public class Main {
 
